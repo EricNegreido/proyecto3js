@@ -2,7 +2,7 @@
     width: 60%;
     margin: 30px auto;
 }
-#newadd {
+#newadd, #editTr{
     display: none;
 }
 
@@ -13,4 +13,26 @@
 }
 #newemployee {
     display: none;
+}
+
+#edit{
+    display: none;
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+.menu{
+    background-color: #555;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+
+
+}
+.menu .menuButton{
+    width: 140px;
+    height: 30px;
 }

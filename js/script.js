@@ -18,11 +18,10 @@ class item { // El producto en si que se agrega a la lista con su costo correspo
     }
 }
 
-const jobs = [];
-
 //FUNCIONES
 let aux;
 
+//Muestra los campos para escribir
 function show(num) {
     if (0 == num) {
         let newR = document.getElementById("newadd");
@@ -30,10 +29,13 @@ function show(num) {
     } else if (1 == num) {
         let newE = document.getElementById("newemployee");
         newE.style.display = "block";
+    }else if( 2== num){
+        document.getElementById("editTr").style.display = "block";
     }
 
 }
 
+//Nueva transaccion 
 function acceptRegister() {
     //Cargar valores
     let aux1 = document.getElementById("name").value;
@@ -52,8 +54,13 @@ function acceptRegister() {
         const newRow = document.createElement("div");
         newRow.className = "row";
         newRow.textContent = `${aux1}  ${aux2}  ${aux3}  ${aux4}  ${aux5}`;
+
+        newRow.onclick = () => {
+            alert("hola");
+        };
         let reg = document.getElementById("register");
         reg.append(newRow);
+
 
         //creo mi objeto
         let newTransaction = new item(aux1, aux2, aux3, aux4, aux5);
@@ -75,6 +82,7 @@ function acceptRegister() {
 
 }
 
+//Nuevo empleado
 function acceptEmployee() {
     //Cargar valores
     let aux1 = document.getElementById("newname").value;
@@ -90,23 +98,63 @@ function acceptEmployee() {
         newOption.textContent = `${aux1}`;
         let reg = document.getElementById("name");
         reg.appendChild(newOption);
+
+        //creo mi objeto
+        let employee = new item(aux1, aux2);
+        //Agrego a la lista de transacciones
+        let jobs = JSON.parse(localStorage.getItem("listEmployee")) || []; //Si tengo una lista en locasStorage la uso sino creo una vacia
+        jobs.push(employee);
+        //Agrego al localStorage}
+        let listJson = JSON.stringify(jobs);
+        localStorage.setItem("listEmployee", listJson);
     }
 
     document.getElementById("newname").value = "";
     document.getElementById("job").value = "";
 }
 
-function loadTransactions (){
+function loadDate() {
 
     let transactions = JSON.parse(localStorage.getItem("TransactionLog"));
     transactions.forEach(element => {
         const newRow = document.createElement("div");
         newRow.className = "row";
         newRow.textContent = `${element.person}  ${element.subject}  ${element.product}  ${element.cost}  ${element.debt}`;
+        newRow.onclick = () => {
+            show(2);
+            const editButton = document.getElementById("edit");
+            editButton.onclick= () => 
+                {editTransaction(newRow, element.person, element.subject, element.product, element.cost, element.debt);
+            };
+            
+            
+        };
         let reg = document.getElementById("register");
         reg.append(newRow);
     });
+    let jobs = JSON.parse(localStorage.getItem("listEmployee"));
+    jobs.forEach(elem => {
+        const newOption = document.createElement("option");
+        newOption.textContent = `${elem.person}`;
+        let reg = document.getElementById("name");
+        reg.appendChild(newOption);
+    })
 }
+function editTransaction(elem, name, subject, product, cost, pay){
+    show(0);
+    //Cargar valores
+    document.getElementById("name").value = name;
+    document.getElementById("subjet").value = subject;
+    document.getElementById("product").value = product;
+    document.getElementById("cost").value = cost;
+    document.getElementById("pay").value = pay;
+    
+
+    // // Ocultar el formulario
+    // let newR = document.getElementById("newadd");
+    // newR.style.display = "none";
+}
+
 
 //Eventos
 
@@ -125,4 +173,6 @@ newPerso.onclick = () => {
 
 let creatEmployee = document.getElementById("accept");
 creatEmployee.onclick = acceptEmployee;
-loadTransactions();
+
+//Llamada de la carga de datos
+loadDate();
