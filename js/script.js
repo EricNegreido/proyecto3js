@@ -198,7 +198,7 @@ function editTransaction(elem, newRow) {
         let value1 = document.getElementById("editName").value;
         let value2 = document.getElementById("editSubjet").value;
         let value3 = document.getElementById("editProduct").value;
-        let value4 = document.getElementById("editCost").value;
+        let value4 = "$"+document.getElementById("editCost").value;
         let value5 = document.getElementById("editPay").value;
 
 
