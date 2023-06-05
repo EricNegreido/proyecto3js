@@ -24,6 +24,8 @@ class item { // El producto en si que se agrega a la lista con su costo correspo
 
 //Muestra los campos para escribir
 function show(num) {
+    let menuI = document.getElementById("menuInput");
+    menuI.style.display = "block";
     if (0 == num) {
         let newR = document.getElementById("newadd");
         newR.style.display = "block";
@@ -41,12 +43,14 @@ function acceptRegister() {
     let aux1 = document.getElementById("name").value;
     let aux2 = document.getElementById("subjet").value;
     let aux3 = document.getElementById("product").value;
-    let aux4 = "$"+document.getElementById("cost").value;
+    let aux4 = "$" + document.getElementById("cost").value;
     let aux5 = document.getElementById("pay").value;
 
     // Ocultar el formulario
     let newR = document.getElementById("newadd");
     newR.style.display = "none";
+    let menuI = document.getElementById("menuInput");
+    menuI.style.display = "none";
 
     if (aux1 != "" && aux2 != "" && aux3 != "" && aux4 != "") { // Condicional para no crear estructura vacia
 
@@ -55,7 +59,7 @@ function acceptRegister() {
         newRow.className = "row";
         newRow.textContent = `${aux1}  ${aux2}  ${aux3}  ${aux4}  ${aux5}`;
 
-        
+
         let reg = document.getElementById("register");
         reg.append(newRow);
 
@@ -75,7 +79,7 @@ function acceptRegister() {
             };
             const removeButton = document.getElementById("remove");
             removeButton.onclick = () => {
-                removeTransaction(newTransaction,newRow);
+                removeTransaction(newTransaction, newRow);
             };
 
 
@@ -108,6 +112,8 @@ function acceptEmployee() {
     // Ocultar el formulario
     let newE = document.getElementById("newemployee");
     newE.style.display = "none";
+    let menuI = document.getElementById("menuInput");
+    menuI.style.display = "none";
     if (aux1 != "" && aux2 != "") { // Condicional para no crear estructura vacia
 
         //Agregar al DOM
@@ -146,11 +152,11 @@ function loadDate() {
         newRow.onclick = () => {
             const editButton = document.getElementById("edit");
             editButton.onclick = () => {
-                editTransaction(element,newRow);
+                editTransaction(element, newRow);
             };
             const removeButton = document.getElementById("remove");
             removeButton.onclick = () => {
-                removeTransaction(element,newRow);
+                removeTransaction(element, newRow);
             };
 
 
@@ -159,7 +165,7 @@ function loadDate() {
         reg.append(newRow);
     });
     // recargo las listas de empleados
-    let jobs = JSON.parse(localStorage.getItem("listEmployee")) ||[];
+    let jobs = JSON.parse(localStorage.getItem("listEmployee")) || [];
     jobs.forEach(elem => {
         const newOption = document.createElement("option");
         const newOption2 = document.createElement("option");
@@ -176,7 +182,7 @@ function loadDate() {
 
 }
 
-function editTransaction(elem,newRow) {
+function editTransaction(elem, newRow) {
 
     //Cargar valores
     document.getElementById("editName").value = elem.person;
@@ -198,9 +204,11 @@ function editTransaction(elem,newRow) {
 
         newRow.textContent = `${value1} ${value2} ${value3} ${value4} ${value5}`;
 
-            // Ocultar el formulario
+        // Ocultar el formulario
         let newR = document.getElementById("editTr");
         newR.style.display = "none";
+        let menuI = document.getElementById("menuInput");
+        menuI.style.display = "none";
 
         //Actualizo valores del locastorage
 
@@ -219,15 +227,17 @@ function editTransaction(elem,newRow) {
     }
 }
 
-function removeTransaction(elemStorage, elemDom){
+function removeTransaction(elemStorage, elemDom) {
 
     let parent = elemDom.parentNode;
     parent.removeChild(elemDom);
 
     let transactions = JSON.parse(localStorage.getItem("TransactionLog"));
     let removeStorage = transactions.findIndex(transaction => transaction.id == elemStorage.id);
-    if(removeStorage){
+    if (removeStorage || removeStorage == 0) {
+        
         transactions.splice(removeStorage, 1);
+        
         let updateJson = JSON.stringify(transactions);
         localStorage.setItem("TransactionLog", updateJson);
     }

@@ -1,5 +1,9 @@
+body{
+    padding: 0;
+    margin: 0;
+}
 .container{
-    width: 60%;
+    width: 50%;
     margin: 30px auto;
 }
 #newadd, #editTr{
@@ -10,28 +14,51 @@
     width: 100%;
     border: solid 1px black;
     height: 20px;
+    padding: 1px 5px;
+    box-sizing: border-box;
 }
+
 #newemployee {
     display: none;
 }
-
-#edit{
-    position:absolute;
-    right: 10px;
-    top: 10px;
-    width: 100px;
-    height: 50px;
-}
-
 .menu{
-    background-color: #555;
-    height: 50px;
+    position: sticky;
+    top:0;
+    background-color: #555; 
     display: flex;
+    flex-direction: column;
+    height: 130px;
     justify-content: center;
-
+    align-items: center;
+    
 
 }
+
 .menu .menuButton{
-    width: 140px;
-    height: 30px;
+    height: 50px;
+    width: 150px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+}
+.menu #menuInput input, #creat, #editCreat, #accept{
+    width: 120px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    margin: 0 2px;
+}
+.menu #menuInput{
+    background-color: antiquewhite;
+    padding: 10px;
+    height: 60px;
+    position: absolute;
+    display: none;
+
+}
+#register{
+    
+    display: flex;
+    flex-direction: column-reverse;
+    word-spacing: 3.5em;
 }

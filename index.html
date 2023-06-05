@@ -5,36 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>s</title>
+    <title>Transacciones</title>
 </head>
 <body>
     <div class="container" >
         <div class="menu">
+            <div class="menuControls">
+                <button class="menuButton" id="add">Agregar</button>
+                <button class="menuButton" id="remove">Borrar</button>
+                <button class="menuButton" id="new">Nuevo</button>
+                <button class="menuButton" id="edit">Editar</button>
+            </div>
+            <div id="menuInput">
 
-            <button class="menuButton" id="add">Agregar</button><button class="menuButton" id="remove">Borrar</button><button class="menuButton" id="new">Nuevo</button>
+                <div id="newadd">
+                    <select name="name" id="name"> 
+                    </select><input id="subjet" type="text">
+                    <input id="product" type="text">
+                    <input id="cost" type="number">
+                    <input id="pay" type="text">
+                    <button id="creat">Agregar</button>
+                </div>
+                <div id="editTr">
+                    <select name="edName" id="editName"> </select>
+                    <input id="editSubjet" type="text">
+                    <input id="editProduct" type="text">
+                    <input id="editCost" type="number">
+                    <input id="editPay" type="text">
+                    <button id="editCreat">Editar</button>
+                </div>
+                <div id="newemployee">
+                    <input id="newname" type="text"><input id="job" type="text">
+                        <button id="accept">Crear</button>
+                </div>
+            </div>
 
         </div>
-        <button id="edit">Editar</button>
-        <div id="newadd">
-            <select name="name" id="name"> 
-            </select><input id="subjet" type="text">
-            <input id="product" type="text">
-            <input id="cost" type="number">
-            <input id="pay" type="text">
-            <button id="creat">Agregar</button>
-        </div>
-        <div id="editTr">
-            <select name="edName" id="editName"> </select>
-            <input id="editSubjet" type="text">
-            <input id="editProduct" type="text">
-            <input id="editCost" type="number">
-            <input id="editPay" type="text">
-            <button id="editCreat">Editar</button>
-        </div>
-        <div id="newemployee">
-            <input id="newname" type="text"><input id="job" type="text">
-                <button id="accept">Crear</button>
-        </div>
+        
         <div id="register">
         </div>
         
